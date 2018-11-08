@@ -59,12 +59,7 @@ namespace Microsoft.AspNetCore.Builder
             var response = node.InvokeExportAsync<ParcelServerInfo>(script.FileName, "runParcelBundler", JsonConvert.SerializeObject(args, SerializerSettings))
                 .Result;
 
-            if (response?.PublicPath == null)
-            {
-                return app;
-            }
-
-            return app.UseProxyToLocalParcelBunderServer(response.PublicPath, response.Port, TimeSpan.FromSeconds(100));
+            return app;
         }
 
         private static string LoadScriptContent()
@@ -79,24 +74,6 @@ namespace Microsoft.AspNetCore.Builder
             {
                 return reader.ReadToEnd();
             }
-        }
-
-        private static IApplicationBuilder UseProxyToLocalParcelBunderServer(this IApplicationBuilder appBuilder, string publicPath, int proxyToPort, TimeSpan requestTimeout)
-        {
-            // Note that this is hardcoded to make requests to "localhost" regardless of the hostname of the
-            // server as far as the client is concerned. This is because ConditionalProxyMiddlewareOptions is
-            // the one making the internal HTTP requests, and it's going to be to some port on this machine
-            // because aspnet-webpack hosts the dev server there. We can't use the hostname that the client
-            // sees, because that could be anything (e.g., some upstream load balancer) and we might not be
-            // able to make outbound requests to it from here.
-            // Also note that the webpack HMR service always uses HTTP, even if your app server uses HTTPS,
-            // because the HMR service has no need for HTTPS (the client doesn't see it directly - all traffic
-            // to it is proxied), and the HMR service couldn't use HTTPS anyway (in general it wouldn't have
-            // the necessary certificate).
-            var proxyOptions = new ConditionalProxyMiddlewareOptions(
-                "http", "localhost", proxyToPort.ToString(), requestTimeout);
-                
-            return appBuilder.UseMiddleware<ConditionalProxyMiddleware>(publicPath, proxyOptions);
         }
     }
 }
