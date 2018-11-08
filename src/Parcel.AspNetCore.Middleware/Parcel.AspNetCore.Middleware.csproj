@@ -9,7 +9,7 @@
     <Copyright>2018</Copyright>
     <PackageProjectUrl>https://github.com/allansson/parcel-aspnetcore-middleware</PackageProjectUrl>
     <RepositoryUrl>https://github.com/allansson/parcel-aspnetcore-middleware</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/allansson/parcel-aspnetcore-middleware/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/allansson/parcel-aspnetcore-middleware/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageTags>parcel aspnetcore build middleware</PackageTags>
   </PropertyGroup>
 
