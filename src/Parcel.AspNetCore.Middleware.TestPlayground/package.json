@@ -1,0 +1,15 @@
+{
+  "name": "parcel.aspnetcore.middleware.testplayground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/parcel-bundler/bin/cli.js --out-dir=wwwroot Client/js/app.js Client/css/app.scss"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.10.0",
+    "parcel-bundler": "^1.10.3"
+  }
+}
