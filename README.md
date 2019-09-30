@@ -34,6 +34,11 @@ The other possible options in `ParcelBundlerOptions` are the same as those provi
 
 # Known issues
 
+## Not reloading files
+
+Parcel watches file system changes. Some editors uses "safe writes" which is incompatibile witch watching file system changes on some of file systems (like on Windows).
+environment variable `CHOKIDAR_USEPOLLING=1` solves this problem (paid by performance). [Parcel Issue 564](https://github.com/parcel-bundler/parcel/issues/564).
+
 ## Hot Module Reload and HTTPS
 
 HMR does not work out-of-the-box when hosting your application under HTTPS. To make 
