@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Builder
 
         public static IApplicationBuilder UseParcelBundler(this IApplicationBuilder app, ParcelBundlerOptions options)
         {
-            var environment = app.ApplicationServices.GetService<IHostingEnvironment>();
+            var environment = app.ApplicationServices.GetService<IWebHostEnvironment>();
 
             var nodeServiceOptions = new NodeServicesOptions(app.ApplicationServices)
             {
